@@ -10,6 +10,16 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+  {
+    path: '/cost',
+    name: 'cost',
+    component: HomeView
+  },
+  {
+    path: '/cost/:id',
+    name: 'cost-edit',
+    component: HomeView
+  }
   // {
   //   path: '/about',
   //   name: 'about',

@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     costList: [],
     page: 1,
-    itemsPerPage: 5
+    itemsPerPage: 5,
+    lastID: 0
   },
   getters: {
     getList: (state) => {
@@ -21,7 +22,15 @@ export default new Vuex.Store({
     setList: (state, list) => { state.costList = list },
     setPage: (state, pageNum) => { state.page = pageNum },
     nextPage: (state) => { state.page = ++state.page },
-    prevPage: (state) => { state.page-- }
+    prevPage: (state) => { state.page-- },
+    setLastId: (state, value) => state.lastID = value,
+    addCost: (state, payload) => {
+      const date = new Date();
+      state.costList.push(Object.assign({
+        id: ++state.lastID,
+        date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`
+      }, payload))
+    }
   },
   actions: {
     getList({ commit }) {
@@ -36,6 +45,7 @@ export default new Vuex.Store({
             { id: 6, category: 'food', value: 10, date: '22.11.2022' },
             { id: 7, category: 'transport', value: 500, date: '22.11.2022' }
           ])
+          commit('setLastId', 7)
           res()
         }, 2000)
       }

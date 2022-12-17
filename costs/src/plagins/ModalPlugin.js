@@ -12,6 +12,9 @@ export default {
             },
             hide(modalId) {
                 this.EventBus.$emit('modalHide', modalId)
+            },
+            toggle(modalId) {
+                this.EventBus.$emit('modalToggle', modalId)
             }
         }
     }
